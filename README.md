@@ -12,6 +12,21 @@ Download npg.sh anywhere you want
 wget https://raw.githubusercontent.com/nicolasbeauvais/npg/master/npg.sh
 ```
 
+Modify the script accordingly:
+```bash
+# You nginx vhost directory
+NGINX_VHOSTS_DIR="/etc/nginx/sites-available"
+
+# You working directory
+WORKING_DIR="/your/work/directory"
+
+# The command to restart nginxa
+RESTART_NGINX="service nginx restart"
+
+# Username to use when creating directories
+USERNAME="yourusername"
+```
+
 Create a symlink:
 ```bash
 ln -s npg.sh /usr/bin/npg
