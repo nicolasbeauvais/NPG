@@ -25,6 +25,12 @@ RESTART_NGINX="service nginx restart"
 
 # Username to use when creating directories
 USERNAME="yourusername"
+
+# PHP version
+PHP_VERSION="7.1"
+
+# Default TLD to use
+TLD="localhost"
 ```
 
 Create a symlink:

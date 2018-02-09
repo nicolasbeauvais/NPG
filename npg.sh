@@ -16,6 +16,12 @@ RESTART_NGINX="service nginx restart"
 # Username to use when creating directories
 USERNAME="nicolas"
 
+# PHP version
+PHP_VERSION="7.1"
+
+# Default TLD to use
+TLD="localhost"
+
 # Parse arguments
 declare -a args=();
 
@@ -131,7 +137,7 @@ if [[ " ${args[*]} " == *" create "* ]]; then
   if [ -z "${args[1]}" ]; then
     printf "%s\n" "${red}[ERROR] You need to specify a project name.${end}"
     printf "%s\n" "${yel}Usage:${end}"
-    printf "  %s\n\n" "npg create project.dev"
+    printf "  %s\n\n" "npg create project.${TLD}"
     printf "%s\n" "Type ${grn}npg --help${end} to display the help message"
     exit
   fi
@@ -175,7 +181,7 @@ server {
     location ~ \.php$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
 
-        fastcgi_pass unix:/var/run/php/php7.1-fpm.sock;
+        fastcgi_pass unix:/var/run/php/php${PHP_VERSION}-fpm.sock;
         fastcgi_index index.php;
         include fastcgi.conf;
     }
@@ -216,7 +222,7 @@ if [[ " ${args[*]} " == *" delete "* ]]; then
   if [ -z "${args[1]}" ]; then
     printf "%s\n" "${red}[ERROR] You need to specify a project name.${end}"
     printf "%s\n" "${yel}Usage:${end}"
-    printf "  %s\n\n" "npg delete project.dev"
+    printf "  %s\n\n" "npg delete project.${TLD}"
     printf "%s\n" "Type ${grn}npg --help${end} to display the help message"
     exit
   fi
@@ -262,7 +268,7 @@ if [[ " ${args[*]} " == *" rename "* ]]; then
   if [ -z "${args[1]}" ]; then
     printf "%s\n" "${red}[ERROR] You need to specify a project to rename.${end}"
     printf "%s\n" "${yel}Usage:${end}"
-    printf "  %s\n\n" "npg create project.dev newproject.dev"
+    printf "  %s\n\n" "npg create project.${TLD} newproject.${TLD}"
     printf "%s\n" "Type ${grn}npg --help${end} to display the help message"
     exit
   fi
@@ -270,7 +276,7 @@ if [[ " ${args[*]} " == *" rename "* ]]; then
   if [ -z "${args[2]}" ]; then
     printf "%s\n" "${red}[ERROR] You need to specify the project new name.${end}"
     printf "%s\n" "${yel}Usage:${end}"
-    printf "  %s\n\n" "npg create project.dev newproject.dev"
+    printf "  %s\n\n" "npg create project.${TLD} newproject.${TLD}"
     printf "%s\n" "Type ${grn}npg --help${end} to display the help message"
     exit
   fi
